@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mission06_Carpenter.Models;
 
@@ -10,27 +11,14 @@ using Mission06_Carpenter.Models;
 namespace Mission06_Carpenter.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20240220174409_RenameVariables")]
+    partial class RenameVariables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
-
-            modelBuilder.Entity("Mission06_Carpenter.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Category");
-                });
 
             modelBuilder.Entity("Mission06_Carpenter.Models.Movie", b =>
                 {
@@ -68,18 +56,7 @@ namespace Mission06_Carpenter.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Movies");
-                });
-
-            modelBuilder.Entity("Mission06_Carpenter.Models.Movie", b =>
-                {
-                    b.HasOne("Mission06_Carpenter.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

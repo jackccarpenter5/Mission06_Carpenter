@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mission06_Carpenter.Models;
 
@@ -10,16 +11,18 @@ using Mission06_Carpenter.Models;
 namespace Mission06_Carpenter.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20240221171221_bigCategoriesGuy")]
+    partial class bigCategoriesGuy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
 
             modelBuilder.Entity("Mission06_Carpenter.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("categoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -27,7 +30,7 @@ namespace Mission06_Carpenter.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("categoryId");
 
                     b.ToTable("Category");
                 });

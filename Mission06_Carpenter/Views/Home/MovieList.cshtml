@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Movie>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-3">Movie List</h2>
+            <table class="table table-bordered table-hover table-responsive-sm table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Movie ID</th>
+                        <th>Category</th>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Director</th>
+                        <th>Rating</th>
+                        <th>Edited</th>
+                        <th>Lent To</th>
+                        <th>Notes</th>
+                        <th>Copied To Plex</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var temp in Model)
+                    {
+                        <tr>
+                            <td>@temp.MovieId</td>
+                            <td>@temp.Category.CategoryName</td>
+                            <td>@temp.Title</td>
+                            <td>@temp.Year</td>
+                            <td>@temp.Director</td>
+                            <td>@temp.Rating</td>
+                            <td>@temp.Edited</td>
+                            <td>@temp.LentTo</td>
+                            <td>@temp.Notes</td>
+                            <td>@temp.CopiedToPlex</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Action Buttons">
+                                    <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.MovieId">Edit</a>
+                                    <a class="btn btn-danger btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@temp.MovieId">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
