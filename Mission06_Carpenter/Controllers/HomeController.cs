@@ -26,16 +26,26 @@ namespace Mission06_Carpenter.Controllers
         [HttpGet]
         public IActionResult EnterAMovie()
         {
-            return View();
+            ViewBag.Movies = _context.Movies.ToList();
+            return View(new Movie());
         }
 
         [HttpPost] 
         public IActionResult EnterAMovie(Movie response)
         {
-            _context.Movies.Add(response); //add record to database
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(response); //add record to database
+                _context.SaveChanges();
 
-            return View("Confirmation", response);
+                return View("Confirmation", response);
+            }
+            else
+            {
+                ViewBag.Movies = _context.Movies.ToList();
+                return View(response);
+            }
+
         }
 
         public IActionResult MovieList()
